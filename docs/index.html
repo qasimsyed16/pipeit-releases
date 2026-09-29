@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PipeIt</title>
+    <link rel="icon" type="image/svg+xml" href="assets/pipeit-logo.svg">
+    <link rel="apple-touch-icon" href="assets/pipeit-logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="PipeIt - Simple, to the point video downloader">
+    <meta property="og:image" content="assets/pipeit-logo.png">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="assets/pipeit-logo.svg" alt="PipeIt Logo" class="logo">
+            <h1>PipeIt</h1>
+            <p class="tagline">Simple, to the point video downloader</p>
+            
+            <div style="margin-top: 2.5rem;">
+                <a href="https://github.com/qasimsyed16/pipeit-releases/releases/latest" class="btn" id="download-btn">Download latest</a>
+            </div>
+
+            <script>
+                fetch('https://api.github.com/repos/qasimsyed16/pipeit-releases/releases/latest')
+                    .then(response => response.json())
+                    .then(data => {
+                        const apkAsset = data.assets.find(asset => asset.name.endsWith('.apk'));
+                        if (apkAsset) {
+                            document.getElementById('download-btn').href = apkAsset.browser_download_url;
+                        }
+                    })
+                    .catch(e => console.error('Error fetching release link:', e));
+            </script>
+
+            <nav class="links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="https://github.com/qasimsyed16/pipeit-releases#readme">View GitHub Repo</a>
+            </nav>
+        </header>
+    </div>
+</body>
+</html>
