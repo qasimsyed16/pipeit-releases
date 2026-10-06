@@ -61,7 +61,7 @@ h1 {
   color: white;
   padding: 0.9rem 2rem;
   text-decoration: none;
-  border-radius: 9999px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1.1rem;
   transition: opacity 0.2s, transform 0.1s;
