@@ -35,15 +35,119 @@
                     })
                     .catch(e => console.error('Error fetching release link:', e));
             </script>
+        </header>
 
+        <!-- App Screenshots Showcase Section -->
+        <section class="showcase-section" aria-label="App Screenshots">
+            <h2 class="showcase-heading">App Screenshots</h2>
+            <p class="showcase-subheading">A clean, distraction-free interface built for Android</p>
+
+            <div class="screenshots-grid">
+                <!-- Card 1: Home -->
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-home.png', 'One-Tap Download')">
+                    <div class="mockup-img-wrap">
+                        <img src="assets/screenshots/mockup-home.png" alt="PipeIt Home Screen" loading="lazy">
+                    </div>
+                    <div class="screenshot-info">
+                        <span class="screenshot-badge">Home</span>
+                        <h3>One-Tap Download</h3>
+                        <p>Tap the pipe to paste your copied video link and start downloading.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Downloads -->
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-downloads.png', 'Downloads Library')">
+                    <div class="mockup-img-wrap">
+                        <img src="assets/screenshots/mockup-downloads.png" alt="PipeIt Downloads Screen" loading="lazy">
+                    </div>
+                    <div class="screenshot-info">
+                        <span class="screenshot-badge">Library</span>
+                        <h3>Downloads Library</h3>
+                        <p>Keep track of saved videos with easy playback, sharing, and deletion.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Settings -->
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-settings.png', 'Preferences & Updates')">
+                    <div class="mockup-img-wrap">
+                        <img src="assets/screenshots/mockup-settings.png" alt="PipeIt Settings Screen" loading="lazy">
+                    </div>
+                    <div class="screenshot-info">
+                        <span class="screenshot-badge">Settings</span>
+                        <h3>Quality & Themes</h3>
+                        <p>Select quality up to 1080p, match system dark mode, and check updates.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Clean View -->
+                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-empty.png', 'Zero Distractions')">
+                    <div class="mockup-img-wrap">
+                        <img src="assets/screenshots/mockup-empty.png" alt="PipeIt Clean State Screen" loading="lazy">
+                    </div>
+                    <div class="screenshot-info">
+                        <span class="screenshot-badge">Minimal</span>
+                        <h3>Zero Distractions</h3>
+                        <p>No accounts required, no trackers, and no third-party advertisements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Links -->
+        <footer class="footer">
             <nav class="links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="https://github.com/qasimsyed16/pipeit-releases#readme">View GitHub Repo</a>
             </nav>
-        </header>
+        </footer>
     </div>
+
+    <!-- Contact Info in the corner -->
     <div style="position: fixed; bottom: 10px; right: 10px; font-size: 0.75rem; color: var(--text-muted); opacity: 0.7;">
         Contact: pipelinelabs123@gmail.com
     </div>
+
+    <!-- Lightbox Modal for Full View -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close image">&times;</button>
+            <img id="lightbox-img" src="" alt="Screenshot preview">
+            <p class="lightbox-caption" id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        function openLightbox(src, caption) {
+            if (!lightbox || !lightboxImg) return;
+            lightboxImg.src = src;
+            if (lightboxCaption) lightboxCaption.textContent = caption;
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            if (!lightbox) return;
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 </body>
 </html>
