@@ -1,153 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PipeIt</title>
-    <link rel="icon" type="image/svg+xml" href="assets/pipeit-logo.svg">
-    <link rel="apple-touch-icon" href="assets/pipeit-logo.png">
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="PipeIt - Simple, to the point video downloader">
-    <meta property="og:image" content="assets/pipeit-logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline Labs – Independent Android Studio</title>
+  <meta name="description" content="Pipeline Labs is an independent Android studio creating lightweight, distraction-free tools engineered for privacy and performance. The developer team behind PipeIt.">
+  <meta property="og:title" content="Pipeline Labs">
+  <meta property="og:description" content="Lightweight, distraction-free Android tools engineered for privacy and performance.">
+  <meta property="og:image" content="assets/pipeit-logo.png">
+  <link rel="icon" href="assets/pipeit-logo.svg" type="image/svg+xml">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pipeline Labs",
+    "url": "https://qasimsyed16.github.io/pipeit-releases/",
+    "email": "pipelinelabs123@gmail.com",
+    "sameAs": ["https://github.com/qasimsyed16/pipeit-releases/#pipeit"]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-alt: #f6f8fb;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --blue: #0a7cff;
+      --teal: #12d6b0;
+      --link: #0a6fcf;
+      --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 8px 24px rgba(15, 23, 42, .05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120;
+        --surface: #111a2e;
+        --surface-alt: #162036;
+        --text: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border: #24304a;
+        --link: #5aa9ff;
+        --shadow: none;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
+    .container { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+       .mark {
+      display: block;
+      height: 24px;
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    /* Header */
+    header { border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: .9rem; color: var(--text-muted); }
+    .nav-links a:hover { color: var(--text); }
+    .btn-outline {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: .85rem;
+      color: var(--text);
+      background: var(--surface);
+    }
+    .btn-outline:hover { border-color: var(--blue); }
+
+    /* Hero */
+    .hero { text-align: center; padding: 88px 0 72px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+    .badge i { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin: 22px 0 18px;
+    }
+    .lead {
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+    .lead strong { color: var(--text); font-weight: 600; }
+    .cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn-primary {
+      background: linear-gradient(135deg, #0a7cff, #1593ff);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-weight: 600;
+      font-size: .9rem;
+      box-shadow: 0 6px 16px rgba(10, 124, 255, .3);
+    }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-size: .9rem;
+    }
+    .btn-ghost:hover { border-color: var(--blue); }
+
+    /* Our apps */
+    section { padding: 24px 0 72px; }
+    h2 { font-size: 1.5rem; letter-spacing: -.02em; margin-bottom: 6px; }
+    .section-sub { color: var(--text-muted); margin-bottom: 24px; }
+    .app-card {
+      display: flex; align-items: center; gap: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .app-icon {
+      width: 64px; height: 64px; flex-shrink: 0;
+      border-radius: 20px;
+      background: var(--surface-alt);
+      display: grid; place-items: center;
+    }
+    .app-icon img { width: 40px; height: auto; }
+    .app-body { flex: 1; min-width: 0; }
+    .app-body h3 { font-size: 1.2rem; }
+    .app-body p { color: var(--text-muted); font-size: .95rem; }
+    .app-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Contact */
+    .contact {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+      max-width: 780px; margin: 0 auto;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 32px;
+    }
+    .contact h2 { font-size: 1.1rem; margin-bottom: 2px; }
+    .contact p { color: var(--text-muted); font-size: .9rem; }
+    .contact .btn-ghost { font-weight: 500; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); font-size: .85rem; color: var(--text-muted); }
+    .foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; padding: 24px 0; }
+    .foot-brand { display: flex; align-items: center; gap: 10px; }
+    .foot-brand strong { color: var(--text); }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    .foot-links a:hover { color: var(--text); }
+    .foot-links a.mail { color: var(--link); }
+
+    @media (max-width: 720px) {
+      .nav-links { gap: 16px; }
+      .nav-links .hide-sm { display: none; }
+      .hero { padding: 56px 0 48px; }
+      .app-card { flex-direction: column; text-align: center; align-items: center; }
+      .app-actions { justify-content: center; }
+      .contact { flex-direction: column; text-align: center; }
+      .foot { flex-direction: column; text-align: center; }
+      .foot-links { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <img src="assets/pipeit-logo.svg" alt="PipeIt Logo" class="logo">
-            <h1>PipeIt</h1>
-            <p class="tagline">Simple, to the point video downloader</p>
-            
-            <div style="margin-top: 2.5rem; display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-                <a href="https://github.com/qasimsyed16/pipeit-releases/releases/latest" class="btn" id="download-btn">Download latest APK</a>
-                <a href='https://pipeit.en.uptodown.com/android' title='Download PipeIt' >
-                    <img src='https://stc.utdstc.com/img/mediakit/download-gio-big-b.png' alt='Download PipeIt' style="height: 58px; width: auto;">
-                </a>
-            </div>
 
-            <script>
-                fetch('https://api.github.com/repos/qasimsyed16/pipeit-releases/releases/latest')
-                    .then(response => response.json())
-                    .then(data => {
-                        const apkAsset = data.assets.find(asset => asset.name.endsWith('.apk'));
-                        if (apkAsset) {
-                            document.getElementById('download-btn').href = apkAsset.browser_download_url;
-                        }
-                    })
-                    .catch(e => console.error('Error fetching release link:', e));
-            </script>
-        </header>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="./" aria-label="Pipeline Labs home">
+        <img class="mark" src="assets/pipeit-logo.svg" alt="" aria-hidden="true">
+        Pipeline Labs
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="pipeit.html">PipeIt App</a>
+        <!-- <a class="hide-sm" href="https://github.com/qasimsyed16/pipeit-releases" target="_blank" rel="noopener">GitHub</a> -->
+        <a class="btn-outline" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-        <!-- App Screenshots Showcase Section -->
-        <section class="showcase-section" aria-label="App Screenshots">
-            <h2 class="showcase-heading">App Screenshots</h2>
-            <p class="showcase-subheading">A clean, distraction-free interface built for Android</p>
-
-            <div class="screenshots-grid">
-                <!-- Card 1: Home -->
-                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-home.png', 'One-Tap Download')">
-                    <div class="mockup-img-wrap">
-                        <img src="assets/screenshots/mockup-home.png" alt="PipeIt Home Screen" loading="lazy">
-                    </div>
-                    <div class="screenshot-info">
-                        <span class="screenshot-badge">Home</span>
-                        <h3>One-Tap Download</h3>
-                        <p>Tap the pipe to paste your copied video link and start downloading.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Downloads -->
-                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-downloads.png', 'Downloads Library')">
-                    <div class="mockup-img-wrap">
-                        <img src="assets/screenshots/mockup-downloads.png" alt="PipeIt Downloads Screen" loading="lazy">
-                    </div>
-                    <div class="screenshot-info">
-                        <span class="screenshot-badge">Library</span>
-                        <h3>Downloads Library</h3>
-                        <p>Keep track of saved videos with easy playback, sharing, and deletion.</p>
-                    </div>
-                </div>
-
-                <!-- Card 3: Settings -->
-                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-settings.png', 'Preferences & Updates')">
-                    <div class="mockup-img-wrap">
-                        <img src="assets/screenshots/mockup-settings.png" alt="PipeIt Settings Screen" loading="lazy">
-                    </div>
-                    <div class="screenshot-info">
-                        <span class="screenshot-badge">Settings</span>
-                        <h3>Quality & Themes</h3>
-                        <p>Select quality up to 1080p, match system dark mode, and check updates.</p>
-                    </div>
-                </div>
-
-                <!-- Card 4: Clean View -->
-                <div class="screenshot-card" onclick="openLightbox('assets/screenshots/mockup-empty.png', 'Zero Distractions')">
-                    <div class="mockup-img-wrap">
-                        <img src="assets/screenshots/mockup-empty.png" alt="PipeIt Clean State Screen" loading="lazy">
-                    </div>
-                    <div class="screenshot-info">
-                        <span class="screenshot-badge">Minimal</span>
-                        <h3>Zero Distractions</h3>
-                        <p>No accounts required, no trackers, and no third-party advertisements.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer Links -->
-        <footer class="footer">
-            <nav class="links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="https://github.com/qasimsyed16/pipeit-releases#readme">View GitHub Repo</a>
-            </nav>
-        </footer>
+  <main>
+    <div class="container hero">
+      <span class="badge"><i aria-hidden="true"></i>Independent Android Studio</span>
+      <h1>Pipeline Labs</h1>
+      <p class="lead">
+        Creating lightweight, distraction-free Android tools engineered for privacy and performance.
+        The developer behind <strong>PipeIt</strong>.
+      </p>
+      <!-- <div class="cta">
+        <a class="btn-primary" href="pipeit.html">Explore PipeIt</a>
+        <a class="btn-ghost" href="mailto:pipelinelabs123@gmail.com">pipelinelabs123@gmail.com</a>
+      </div> -->
     </div>
 
-    <!-- Contact Info in the corner -->
-    <div style="position: fixed; bottom: 10px; right: 10px; font-size: 0.75rem; color: var(--text-muted); opacity: 0.7;">
-        Contact: pipelinelabs123@gmail.com
-    </div>
-
-    <!-- Lightbox Modal for Full View -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightbox-close" aria-label="Close image">&times;</button>
-            <img id="lightbox-img" src="" alt="Screenshot preview">
-            <p class="lightbox-caption" id="lightbox-caption"></p>
+    <section>
+      <div class="container">
+        <h2>Our apps</h2>
+        <p class="section-sub">What we're building right now.</p>
+        <div class="app-card">
+          <div class="app-icon"><img src="assets/pipeit-logo.svg" alt="PipeIt logo"></div>
+          <div class="app-body">
+            <h3>PipeIt</h3>
+            <p>A simple, to-the-point video downloader for Android.</p>
+          </div>
+          <div class="app-actions">
+            <a class="btn-primary" href="pipeit.html">View app</a>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <h2>Developer &amp; organization inquiries</h2>
+            <p>Questions about Pipeline Labs or our apps? Email us.</p>
+          </div>
+          <a class="btn-ghost" href="mailto:pipelinelabs123@gmail.com">pipelinelabs123@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div class="foot-brand">
+        <img class="mark" src="assets/pipeit-logo.svg" alt="" aria-hidden="true">
+        <strong>Pipeline Labs</strong>
+        <span>&copy; 2026 Pipeline Labs</span>
+      </div>
+      <div class="foot-links">
+        <a href="pipeit.html">PipeIt</a>
+        <a href="https://en.uptodown.com/developer/pipeline-labs" target="_blank" rel="noopener">Uptodown</a>
+      </div>
     </div>
+  </footer>
 
-    <script>
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const lightboxClose = document.getElementById('lightbox-close');
-
-        function openLightbox(src, caption) {
-            if (!lightbox || !lightboxImg) return;
-            lightboxImg.src = src;
-            if (lightboxCaption) lightboxCaption.textContent = caption;
-            lightbox.classList.add('open');
-            lightbox.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            if (!lightbox) return;
-            lightbox.classList.remove('open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-        }
-
-        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-        if (lightbox) {
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) closeLightbox();
-            });
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
-    </script>
 </body>
 </html>
